@@ -4,13 +4,14 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>1644d48e-b4b2-4e12-baf3-cf85a6daf9a6</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>NNExp.py</StartupFile>
+    <StartupFile>main.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <Name>NNExp</Name>
     <RootNamespace>NNExp</RootNamespace>
+    <InterpreterId>Global|PythonCore|3.5</InterpreterId>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,7 +22,31 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="NNExp.py" />
+    <Compile Include="activation_fns.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="labeled_data.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="init_fns.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="main.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="mnist_dataset.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="network.py" />
+    <Compile Include="loss_fns.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="network_config.py">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <InterpreterReference Include="Global|PythonCore|3.5" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
