@@ -25,7 +25,7 @@ class MnistDataset:
     def from_pickle_data(pickle_data):
         inputs = [np.reshape(x, (784, 1)) for x in pickle_data[0]]
         outputs = [MnistDataset.one_hot(y) for y in pickle_data[1]]
-        return list(zip(inputs, outputs))
+        return list(zip(inputs, outputs, range(len(inputs))))
 
     @staticmethod
     def one_hot(j):

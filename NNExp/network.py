@@ -5,11 +5,12 @@ import labeled_data
 class Network:
     def __init__(self, config : network_config.NetworkConfig):
         np.seterr(all='raise')
+        np.random.seed(42)
         self.config = config
 
     def feed_forward(self, input_vals):
         for b, w in zip(self.biases, self.weights):
-            input_vals = self.activation_c.fn(np.dot(w, input_vals) + b)
+            input_vals = self.config.activation_c.fn(np.dot(w, input_vals) + b)
         return input_vals
 
     def sgd(self, labeled_data : labeled_data.LabeledData):
@@ -18,27 +19,26 @@ class Network:
 
         n = len(labeled_data.train)
 
-        mini_batches = [
-            labeled_data.train[k : k + self.config.batch_size]
-            for k in range(0, n, self.config.batch_size)]
-
         for j in range(self.config.epochs):
             np.random.shuffle(labeled_data.train)
+            mini_batches = [
+                labeled_data.train[k : k + self.config.batch_size]
+                for k in range(0, n, self.config.batch_size)]
             for batch in mini_batches:
                 self.sgd_batch(batch, len(labeled_data.train))
-            print("Epoch %s training complete" % j)
+            print("Epoch %d : %d / %d" % (j, self.evaluate(labeled_data.test), len(labeled_data.test)))
 
     def sgd_batch(self, batch, n):
         b_batch = [np.zeros(b.shape) for b in self.biases]
         w_batch = [np.zeros(w.shape) for w in self.weights]
 
-        for x, y_true in batch:
+        for x, y_true, id in batch:
             b_backprop, w_backprop = self.backprop(x, y_true)
             b_batch = [bb + bbp for bb, bbp in zip(b_batch, b_backprop)]
             w_batch = [wb + wbp for wb, wbp in zip(w_batch, w_backprop)]
 
         regularization = 1 - self.config.eta*(self.config.lmbda/n)
-        eta_batch = self.config.eta/len(batch)
+        eta_batch = self.config.eta / len(batch)
 
         self.weights = [regularization * w - eta_batch * wb
                         for w, wb in zip(self.weights, w_batch)]
@@ -61,8 +61,6 @@ class Network:
 
         # backward pass
         d_loss = self.config.loss_c.d_fn(layer_inputs[-1], y_true)
-        if d_loss.shape == (10,10):
-            print('hit')
         d_activation = self.config.activation_c.d_fn(input_sums[-1])
         delta =  d_loss * d_activation
             
@@ -75,10 +73,11 @@ class Network:
             delta = np.dot(self.weights[-l+1].transpose(), delta) * d_activation
             b_bp[-l] = delta
             w_bp[-l] = np.dot(delta, layer_inputs[-l-1].transpose())
+
         return (b_bp, w_bp)
 
     def evaluate(self, test_data):
         test_results = [(np.argmax(self.feed_forward(x)), np.argmax(y_true))
-                        for (x, y_true) in test_data]
+                        for (x, y_true, id) in test_data]
         return sum(int(y_pred == y_true) for (y_pred, y_true) in test_results)
 

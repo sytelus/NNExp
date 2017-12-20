@@ -27,6 +27,6 @@ class CrossEntropyLoss:
 
         """
         denom = y_pred * (y_pred-1)
-        denom = [d if d != 0 else [1E-30] for d in denom]
+        # denom = [d if d != 0 else [1E-30] for d in denom]
         return (y_pred-y_true) / denom
 
