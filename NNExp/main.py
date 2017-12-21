@@ -1,6 +1,10 @@
 import mnist_dataset as mnist
 import network as nn
 import network_config
+import numpy as np
+
+np.seterr(all='raise')
+np.random.seed(42)
 
 labeled_data = mnist.MnistDataset.from_pickled_file()
 config = network_config.NetworkConfig()

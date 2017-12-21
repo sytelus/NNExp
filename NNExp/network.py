@@ -4,8 +4,6 @@ import labeled_data
 
 class Network:
     def __init__(self, config : network_config.NetworkConfig):
-        np.seterr(all='raise')
-        np.random.seed(42)
         self.config = config
 
     def feed_forward(self, input_vals):
@@ -33,7 +31,7 @@ class Network:
         w_batch = [np.zeros(w.shape) for w in self.weights]
 
         for x, y_true, id in batch:
-            b_backprop, w_backprop = self.backprop(x, y_true)
+            b_backprop, w_backprop = self.config.backprop_c.fn(self.config, self.biases, self.weights, x, y_true)
             b_batch = [bb + bbp for bb, bbp in zip(b_batch, b_backprop)]
             w_batch = [wb + wbp for wb, wbp in zip(w_batch, w_backprop)]
 
@@ -45,36 +43,6 @@ class Network:
         self.biases = [b - eta_batch * bb
                        for b, bb in zip(self.biases, b_batch)]
 
-    def backprop(self, x, y_true):
-        b_bp = [np.zeros(b.shape) for b in self.biases]
-        w_bp = [np.zeros(w.shape) for w in self.weights]
-
-        # feed_forward
-        layer_input = x
-        layer_inputs = [x] # list to store all the layer_inputs, layer by layer
-        input_sums = [] # list to store all the input_sum vectors, layer by layer
-        for b, w in zip(self.biases, self.weights):
-            input_sum = np.dot(w, layer_input) + b
-            input_sums.append(input_sum)
-            layer_input = self.config.activation_c.fn(input_sum)
-            layer_inputs.append(layer_input)
-
-        # backward pass
-        d_loss = self.config.loss_c.d_fn(layer_inputs[-1], y_true)
-        d_activation = self.config.activation_c.d_fn(input_sums[-1])
-        delta =  d_loss * d_activation
-            
-        b_bp[-1] = delta
-        w_bp[-1] = np.dot(delta, layer_inputs[-2].transpose())
-
-        for l in range(2, len(self.config.neuron_counts)):
-            input_sum = input_sums[-l]
-            d_activation = self.config.activation_c.d_fn(input_sum)
-            delta = np.dot(self.weights[-l+1].transpose(), delta) * d_activation
-            b_bp[-l] = delta
-            w_bp[-l] = np.dot(delta, layer_inputs[-l-1].transpose())
-
-        return (b_bp, w_bp)
 
     def evaluate(self, test_data):
         test_results = [(np.argmax(self.feed_forward(x)), np.argmax(y_true))
