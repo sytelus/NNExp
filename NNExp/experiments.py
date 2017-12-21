@@ -3,10 +3,20 @@ import network as nn
 import network_config
 import init_fns
 import activation_fns
+import param_update_fns
 
 def chap1_full_data():
     labeled_data = mnist.MnistDataset.from_pickled_file()
     config = network_config.NetworkConfig()
+    config.neuron_counts = [784, 30, 10]
+
+    net = nn.Network(config)
+    net.sgd(labeled_data)
+
+def chap1_full_data_alt_update():
+    labeled_data = mnist.MnistDataset.from_pickled_file()
+    config = network_config.NetworkConfig()
+    config.param_update_c = param_update_fns.GdFixedParamUpdate()
     config.neuron_counts = [784, 30, 10]
 
     net = nn.Network(config)
