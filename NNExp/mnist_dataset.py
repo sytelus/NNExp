@@ -4,6 +4,7 @@ import labeled_data as ld
 import gzip
 import sys
 import os
+import itertools
 
 class MnistDataset:
     @staticmethod
@@ -16,6 +17,8 @@ class MnistDataset:
 
             dataset = ld.LabeledData()
             dataset.train = MnistDataset.from_pickle_data(training_data)
+            dataset.train = MnistDataset.sample(dataset.train)
+
             dataset.test = MnistDataset.from_pickle_data(test_data)
             dataset.validate = MnistDataset.from_pickle_data(validation_data)
 
@@ -26,6 +29,17 @@ class MnistDataset:
         inputs = [np.reshape(x, (784, 1)) for x in pickle_data[0]]
         outputs = [MnistDataset.one_hot(y) for y in pickle_data[1]]
         return list(zip(inputs, outputs, range(len(inputs))))
+
+    @staticmethod
+    def sample(train_data, class_count = 6000):
+        counts = np.zeros((10, 1))
+        result = []
+        for row in train_data:
+            if counts[np.argmax(row[1])] < class_count:
+                result.append(row)
+                counts[np.argmax(row[1])] += 1
+            if np.min(counts) == class_count: break
+        return result
 
     @staticmethod
     def one_hot(j):
