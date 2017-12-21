@@ -8,7 +8,7 @@ import itertools
 
 class MnistDataset:
     @staticmethod
-    def from_pickled_file(file_path = os.path.join('data', 'mnist.pkl.gz')):
+    def from_pickled_file(class_count = 6000, file_path = os.path.join('data', 'mnist.pkl.gz')):
         script_path = sys.path[0]
         full_file_path = os.path.join(script_path, file_path)
 
@@ -17,7 +17,7 @@ class MnistDataset:
 
             dataset = ld.LabeledData()
             dataset.train = MnistDataset.from_pickle_data(training_data)
-            dataset.train = MnistDataset.sample(dataset.train)
+            dataset.train = MnistDataset.sample(dataset.train, class_count)
 
             dataset.test = MnistDataset.from_pickle_data(test_data)
             dataset.validate = MnistDataset.from_pickle_data(validation_data)
@@ -31,7 +31,7 @@ class MnistDataset:
         return list(zip(inputs, outputs, range(len(inputs))))
 
     @staticmethod
-    def sample(train_data, class_count = 6000):
+    def sample(train_data, class_count):
         counts = np.zeros((10, 1))
         result = []
         for row in train_data:

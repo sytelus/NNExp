@@ -31,17 +31,13 @@ class Network:
         w_batch = [np.zeros(w.shape) for w in self.weights]
 
         for x, y_true, id in batch:
-            b_backprop, w_backprop = self.config.backprop_c.fn(self.config, self.biases, self.weights, x, y_true)
+            b_backprop, w_backprop, loss = self.config.backprop_c.fn(
+                self.config, self.biases, self.weights, x, y_true)
             b_batch = [bb + bbp for bb, bbp in zip(b_batch, b_backprop)]
             w_batch = [wb + wbp for wb, wbp in zip(w_batch, w_backprop)]
 
-        regularization = 1 - self.config.eta*(self.config.lmbda/n)
-        eta_batch = self.config.eta / len(batch)
-
-        self.weights = [regularization * w - eta_batch * wb
-                        for w, wb in zip(self.weights, w_batch)]
-        self.biases = [b - eta_batch * bb
-                       for b, bb in zip(self.biases, b_batch)]
+        self.biases, self.weights = self.config.param_update_c.fn(self.config, self.biases, self.weights, 
+            b_batch, w_batch, len(batch), n)
 
 
     def evaluate(self, test_data):

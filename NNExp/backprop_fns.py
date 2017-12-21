@@ -16,6 +16,7 @@ class ClassicBackprop:
             layer_inputs.append(layer_input)
 
         # backward pass
+        loss = config.loss_c.fn(layer_inputs[-1], y_true)
         d_loss = config.loss_c.d_fn(layer_inputs[-1], y_true)
         d_activation = config.activation_c.d_fn(input_sums[-1])
         delta =  d_loss * d_activation
@@ -30,4 +31,4 @@ class ClassicBackprop:
             b_bp[-l] = delta
             w_bp[-l] = np.dot(delta, layer_inputs[-l-1].transpose())
 
-        return (b_bp, w_bp)
+        return (b_bp, w_bp, loss)

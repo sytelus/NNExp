@@ -8,3 +8,10 @@ class SigmoidActivation:
 
     def d_fn(self, input_sum):
         return self.fn(input_sum) * (1 - self.fn(input_sum))
+
+class ReLUActivation:
+    def fn(self, input_sum):
+        return np.maximum(input_sum, 0)
+
+    def d_fn(self, input_sum):
+        return np.greater(input_sum, 0).astype(int)

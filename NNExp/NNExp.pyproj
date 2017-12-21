@@ -29,6 +29,9 @@
     <Compile Include="backprop_fns.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="experiments.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="labeled_data.py">
       <SubType>Code</SubType>
     </Compile>
@@ -48,12 +51,12 @@
     <Compile Include="network_config.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="param_update_fns.py">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <InterpreterReference Include="Global|PythonCore|3.5" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Chap1Results.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
