@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>1644d48e-b4b2-4e12-baf3-cf85a6daf9a6</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>main.py</StartupFile>
+    <StartupFile>mnist_keras\multilayer_no_dropout.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -13,6 +13,7 @@
     <Name>NNExp</Name>
     <RootNamespace>NNExp</RootNamespace>
     <InterpreterId>Global|PythonCore|3.5</InterpreterId>
+    <IsWindowsApplication>False</IsWindowsApplication>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -44,6 +45,14 @@
     <Compile Include="mnist_dataset.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="mnist_keras\multilayer_no_dropout.py" />
+    <Compile Include="mnist_keras\nielson.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="mnist_keras\official.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="mnist_keras\multilayer.py" />
     <Compile Include="network.py" />
     <Compile Include="loss_fns.py">
       <SubType>Code</SubType>
@@ -57,6 +66,20 @@
   </ItemGroup>
   <ItemGroup>
     <InterpreterReference Include="Global|PythonCore|3.5" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="mnist_keras\" />
+    <Folder Include="mnist_keras\results\" />
+    <Folder Include="mnist_keras\results\mlp\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="mnist_keras\notes.txt" />
+    <Content Include="mnist_keras\results\mlp\1. multilayer_baseline.txt" />
+    <Content Include="mnist_keras\results\mlp\1A. small test data baseline" />
+    <Content Include="mnist_keras\results\mlp\2. just relu" />
+    <Content Include="mnist_keras\results\mlp\3. relu lr 0p03.txt" />
+    <Content Include="mnist_keras\results\nielson-tf.txt" />
+    <Content Include="mnist_keras\results\official.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

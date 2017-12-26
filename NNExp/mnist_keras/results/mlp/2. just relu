@@ -1,0 +1,33 @@
+Using CNTK backend
+Selected CPU as the process wide default device.
+C:\Program Files\Anaconda3\lib\site-packages\keras\backend\cntk_backend.py:18: UserWarning: CNTK backend warning: GPU is not detected. CNTK's CPU version is not fully optimized,please run with GPU to get better performance.
+  'CNTK backend warning: GPU is not detected. '
+300 train samples
+59700 test samples
+C:\Program Files\Anaconda3\lib\site-packages\keras\backend\cntk_backend.py:2337: UserWarning: CNTK backend warning: CNTK version not detected. Will using CNTK 2.0 GA as default.
+  'CNTK backend warning: CNTK version not detected. '
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #
+=================================================================
+dense_1 (Dense)              (None, 30)                23550
+_________________________________________________________________
+dense_2 (Dense)              (None, 10)                310
+=================================================================
+Total params: 23,860
+Trainable params: 23,860
+Non-trainable params: 0
+_________________________________________________________________
+Train on 300 samples, validate on 59700 samples
+Epoch 1/5
+ - 30s - loss: 1765834893731.3513 - categorical_accuracy: 0.1067 - val_loss: 0.5000 - val_categorical_accuracy: 0.0987
+Epoch 2/5
+ - 30s - loss: 0.5000 - categorical_accuracy: 0.1000 - val_loss: 0.5000 - val_categorical_accuracy: 0.0987
+Epoch 3/5
+ - 30s - loss: 0.5000 - categorical_accuracy: 0.1000 - val_loss: 0.5000 - val_categorical_accuracy: 0.0987
+Epoch 4/5
+ - 32s - loss: 0.5000 - categorical_accuracy: 0.1000 - val_loss: 0.5000 - val_categorical_accuracy: 0.0987
+Epoch 5/5
+ - 33s - loss: 0.5000 - categorical_accuracy: 0.1000 - val_loss: 0.5000 - val_categorical_accuracy: 0.0987
+Test loss: 0.5
+Test accuracy: 0.0987102177557
+Press any key to continue . . .

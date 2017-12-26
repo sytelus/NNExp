@@ -1,0 +1,47 @@
+* Simply changing sigmoid to ReLU completely tanks the accuracy
+* To make ReLU work we must decrease LR by 1/100 compared to sigmoid + use HE init + 2X weights. LR=0.3 also doesn't have any effect.
+* with HE init + LR=0.03  -> 0.4290
+* without HE init + LR=0.03  -> 0.0980
+* with glorot init + LR=0.03 -> 0.5536
+* with glorot init + LR=0.1 ->  0.5736, + LR=0.2 -> 0.5177, + LR=0.08 -> 0.5684
+* with lecun init + LR=0.03 -> 0.5153
+* with glorot init + LR=0.08 + weights=30 -> 0.4012
+* with glorot init + LR=0.1 + weights=30-> 0.3785
+* with glorot init + LR=0.08 + weights=30, MSE -> 0.2784
+* with glorot init + LR=0.8 + weights=30, MSE-> 0.3634
+* with glorot init + LR=1 + weights=30, MSE-> 0.3217
+* with glorot init + LR=0.3 + weights=30, MSE-> 0.3555
+* with glorot init + LR=0.1 + weights=30, MSE-> 0.2927
+* with glorot init + LR=1.2 + weights=30, 0.0992
+
+normal, LR=3, (30), (sigmoid, sigmoid), sum_sq
+	-> 0.3924
+	(sigmoid, softmax) -> 0.3628
+		glorot -> 0.7779
+	glorot -> 0.7526
+glorot, LR=0.8, (30), (relu, relu), MSE, batch_size=10
+	-> 0.3634
+	(relu, softmax) -> 0.6652
+		loss=crossentropy -> 0.2025
+		LR=0.3 -> 0.3581
+		LR=1 -> 0.6951
+		LR=1.5 -> 0.7455
+		LR=2.5 -> 0.7930
+		LR=3 -> 0.8081
+			loss=crossentropy -> 0.0982
+		LR=0.1, loss=crossentropy -> 0.8189
+			layers=(300) -> 0.8356
+			layers=(300, 100) -> 0.8352
+				Adam(lr=0.1) ->  0.098
+				lr=0.01 -> 0.6970
+				lr=0.5 -> 0.6180
+			layers=(300, dropout(0.2), 100, dropout(0.2)) -> 0.8197
+			layers=(500, dropout(0.5), 300, dropout(0.5), 100, dropout(0.5), 30, dropout(0.5))
+				RMSProp -> 0.4625
+				Adam -> 0.4970
+					lr=0.1 -> 0.1009
+					lr=0.05 -> 0.1009
+					lr=0.005 -> 0.3237
+						batchsie=32 -> 0.3443
+						epochs=50 -> 0.8482
+					lr=0.0001, epochs=300 -> 0.8517

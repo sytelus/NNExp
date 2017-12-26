@@ -1,0 +1,33 @@
+Using CNTK backend
+Selected CPU as the process wide default device.
+C:\Program Files\Anaconda3\lib\site-packages\keras\backend\cntk_backend.py:18: UserWarning: CNTK backend warning: GPU is not detected. CNTK's CPU version is not fully optimized,please run with GPU to get better performance.
+  'CNTK backend warning: GPU is not detected. '
+300 train samples
+59700 test samples
+C:\Program Files\Anaconda3\lib\site-packages\keras\backend\cntk_backend.py:2337: UserWarning: CNTK backend warning: CNTK version not detected. Will using CNTK 2.0 GA as default.
+  'CNTK backend warning: CNTK version not detected. '
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #
+=================================================================
+dense_1 (Dense)              (None, 30)                23550
+_________________________________________________________________
+dense_2 (Dense)              (None, 10)                310
+=================================================================
+Total params: 23,860
+Trainable params: 23,860
+Non-trainable params: 0
+_________________________________________________________________
+Train on 300 samples, validate on 10000 samples
+Epoch 1/5
+ - 6s - loss: 0.6445 - categorical_accuracy: 0.1267 - acc: 0.1733 - val_loss: 0.4689 - val_categorical_accuracy: 0.1986 - val_acc: 0.1986
+Epoch 2/5
+ - 6s - loss: 0.4527 - categorical_accuracy: 0.2200 - acc: 0.2833 - val_loss: 0.4331 - val_categorical_accuracy: 0.2696 - val_acc: 0.2696
+Epoch 3/5
+ - 6s - loss: 0.4123 - categorical_accuracy: 0.2933 - acc: 0.3667 - val_loss: 0.4169 - val_categorical_accuracy: 0.3039 - val_acc: 0.3039
+Epoch 4/5
+ - 7s - loss: 0.3834 - categorical_accuracy: 0.3633 - acc: 0.4200 - val_loss: 0.4030 - val_categorical_accuracy: 0.3377 - val_acc: 0.3377
+Epoch 5/5
+ - 7s - loss: 0.3581 - categorical_accuracy: 0.4100 - acc: 0.4833 - val_loss: 0.3847 - val_categorical_accuracy: 0.3924 - val_acc: 0.3924
+Test loss: 0.386623313802
+Test accuracy: 0.390854271365
+Press any key to continue . . .

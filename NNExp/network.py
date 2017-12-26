@@ -25,7 +25,7 @@ class Network:
                 for k in range(0, n, self.config.batch_size)]
             for batch in mini_batches:
                 self.sgd_batch(batch, len(labeled_data.train))
-            print("Epoch %d : %d / %d" % (j, self.evaluate(labeled_data.test), len(labeled_data.test)))
+            print("Epoch %d : %d / %d" % (j, self.evaluate(labeled_data.validate), len(labeled_data.validate)))
         print('done')
 
 
