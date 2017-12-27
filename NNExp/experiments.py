@@ -18,14 +18,26 @@ def chap1_full_data():
     net.sgd(labeled_data)
 
 def chap2_full_data():
-    labeled_data = mnist.MnistDataset.from_pickled_file()
+    labeled_data = mnist.MnistDataset.from_pickled_file(30)
     config = network_config.NetworkConfig()
     config.init_c = init_fns.LeCunNormalInit()
-    config.loss_c = loss_fns.QuadraticLoss()
-    config.activation_c = activation_fns.SigmoidActivation()
+    #config.loss_c = loss_fns.QuadraticLoss()
+    #config.activation_c = activation_fns.SigmoidActivation()
     config.neuron_counts = [784, 30, 30, 30, 30, 10]
-    config.eta = 0.1
-    config.lmbda = 5
+    config.eta = 0.001
+    config.lmbda = 0.025
+    config.epochs = 500
+
+    net = nn.Network(config)
+    net.sgd(labeled_data)
+
+def chap2_full_data_fixed():
+    labeled_data = mnist.MnistDataset.from_pickled_file(30)
+    config = network_config.NetworkConfig()
+    config.param_update_c = param_update_fns.GdFixedParamUpdate()
+    config.neuron_counts = [784, 30, 30, 30, 30, 10]
+    config.lmbda = 0.025
+    config.epochs = 500
 
     net = nn.Network(config)
     net.sgd(labeled_data)
@@ -73,8 +85,8 @@ def linear_data_classical():
 
     config = network_config.NetworkConfig()
     #config.param_update_c = param_update_fns.GdFixedParamUpdate()
-    config.neuron_counts = [1, 2]
-    config.epochs = 20
+    config.neuron_counts = [1, 3, 5, 2]
+    config.epochs = 50
 
     net = nn.Network(config)
     net.sgd(dataset)
@@ -88,13 +100,13 @@ def odd_even_data_classical():
         return data
 
     dataset = ld.LabeledData() 
-    dataset.train = get_data(1000)
-    dataset.test = get_data(100)
-    dataset.validate = get_data(100)
+    dataset.train = get_data(10000)
+    dataset.test = get_data(1000)
+    dataset.validate = get_data(1000)
 
     config = network_config.NetworkConfig()
     #config.param_update_c = param_update_fns.GdFixedParamUpdate()
-    config.neuron_counts = [1, 10, 10, 2]
+    config.neuron_counts = [1, 30, 15, 5, 2]
     config.epochs = 50
 
     net = nn.Network(config)

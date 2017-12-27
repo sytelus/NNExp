@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>1644d48e-b4b2-4e12-baf3-cf85a6daf9a6</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>mnist_keras\multilayer_no_dropout.py</StartupFile>
+    <StartupFile>mnist_keras\multilayer_minimal.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -45,6 +45,11 @@
     <Compile Include="mnist_dataset.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="mnist_keras\layer3SGDCust.py" />
+    <Compile Include="mnist_keras\layer3.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="mnist_keras\multilayer_minimal.py" />
     <Compile Include="mnist_keras\multilayer_no_dropout.py" />
     <Compile Include="mnist_keras\nielson.py">
       <SubType>Code</SubType>
@@ -53,6 +58,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="mnist_keras\multilayer.py" />
+    <Compile Include="mnist_keras\sgd_cust.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="network.py" />
     <Compile Include="loss_fns.py">
       <SubType>Code</SubType>

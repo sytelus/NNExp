@@ -1,4 +1,6 @@
+* just switching to glorot init OR softmax/crossentropy has no impact
 * Simply changing sigmoid to ReLU completely tanks the accuracy
+* min change: glorot init + low LR + ReLU in hidden layers, possibly optional (sigmoid or softmax/crossentropy)
 * To make ReLU work we must decrease LR by 1/100 compared to sigmoid + use HE init + 2X weights. LR=0.3 also doesn't have any effect.
 * with HE init + LR=0.03  -> 0.4290
 * without HE init + LR=0.03  -> 0.0980
@@ -29,7 +31,7 @@ glorot, LR=0.8, (30), (relu, relu), MSE, batch_size=10
 		LR=2.5 -> 0.7930
 		LR=3 -> 0.8081
 			loss=crossentropy -> 0.0982
-		LR=0.1, loss=crossentropy -> 0.8189
+		LR=0.1, loss=crossentropy -> cntk=0.8189 /tf=0.8128
 			layers=(300) -> 0.8356
 			layers=(300, 100) -> 0.8352
 				Adam(lr=0.1) ->  0.098

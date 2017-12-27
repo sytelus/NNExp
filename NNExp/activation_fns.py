@@ -2,7 +2,8 @@ import numpy as np
 
 class SigmoidActivation:
     def fn(self, x):
-        return 1.0 / (1.0 + np.exp(- x))
+        x_clipped = np.clip(x, -300, 300)
+        return np.nan_to_num(1.0 / (1.0 + np.exp(- x_clipped)))
 
     def d_fn(self, x):
         f = self.fn(x)
