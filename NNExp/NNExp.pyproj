@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>1644d48e-b4b2-4e12-baf3-cf85a6daf9a6</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>mnist_keras\multilayer_minimal.py</StartupFile>
+    <StartupFile>main.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -86,6 +86,7 @@
     <Content Include="mnist_keras\results\mlp\1A. small test data baseline" />
     <Content Include="mnist_keras\results\mlp\2. just relu" />
     <Content Include="mnist_keras\results\mlp\3. relu lr 0p03.txt" />
+    <Content Include="mnist_keras\results\Nielson-py.txt" />
     <Content Include="mnist_keras\results\nielson-tf.txt" />
     <Content Include="mnist_keras\results\official.txt" />
   </ItemGroup>
