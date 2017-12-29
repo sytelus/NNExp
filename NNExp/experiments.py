@@ -9,7 +9,7 @@ import activation_fns
 import param_update_fns
 import math
 
-def chap1_full_data():
+def nielson_3layer_full_data():
     labeled_data = mnist.MnistDataset.from_pickled_file()
     config = network_config.NetworkConfig()
     config.neuron_counts = [784, 30, 10]
@@ -17,17 +17,7 @@ def chap1_full_data():
     net = nn.Network(config)
     net.sgd(labeled_data)
 
-def chap1_full_data_invgrad():
-    labeled_data = mnist.MnistDataset.from_pickled_file()
-    config = network_config.NetworkConfig()
-    config.param_update_c = param_update_fns.GdFixedParamUpdate()
-
-    config.neuron_counts = [784, 30, 10]
-
-    net = nn.Network(config)
-    net.sgd(labeled_data)
-
-def chap2_full_data():
+def nielson_6layer_full_data():
     labeled_data = mnist.MnistDataset.from_pickled_file(30)
     config = network_config.NetworkConfig()
     config.init_c = init_fns.LeCunNormalInit()
@@ -41,10 +31,10 @@ def chap2_full_data():
     net = nn.Network(config)
     net.sgd(labeled_data)
 
-def chap2_full_data_fixed():
+def invgrad_6layer():
     labeled_data = mnist.MnistDataset.from_pickled_file(30)
     config = network_config.NetworkConfig()
-    config.param_update_c = param_update_fns.GdFixedParamUpdate()
+    config.param_update_c = param_update_fns.InvGradParamUpdate()
     config.neuron_counts = [784, 30, 30, 30, 30, 10]
     config.lmbda = 0.025
     config.epochs = 500
@@ -52,16 +42,16 @@ def chap2_full_data_fixed():
     net = nn.Network(config)
     net.sgd(labeled_data)
 
-def chap1_full_data_alt_update():
+def invgrad_3layer():
     labeled_data = mnist.MnistDataset.from_pickled_file()
     config = network_config.NetworkConfig()
-    config.param_update_c = param_update_fns.GdFixedParamUpdate()
+    config.param_update_c = param_update_fns.InvGradParamUpdate()
     config.neuron_counts = [784, 30, 10]
 
     net = nn.Network(config)
     net.sgd(labeled_data)
 
-def chap1_200rows_epochs100():
+def neilson_3layer_200rows_100epochs():
     labeled_data = mnist.MnistDataset.from_pickled_file(20)
     config = network_config.NetworkConfig()
     config.neuron_counts = [784, 30, 10]
@@ -70,7 +60,7 @@ def chap1_200rows_epochs100():
     net = nn.Network(config)
     net.sgd(labeled_data)
 
-def chap1_200rows_epochs50_3hidden():
+def neilson_5layer_200rows_100epochs():
     labeled_data = mnist.MnistDataset.from_pickled_file(20)
     config = network_config.NetworkConfig()
     config.init_c = init_fns.LeCunNormalInit()
@@ -94,7 +84,7 @@ def linear_data_classical():
     dataset.validate = get_data(100)
 
     config = network_config.NetworkConfig()
-    #config.param_update_c = param_update_fns.GdFixedParamUpdate()
+    #config.param_update_c = param_update_fns.InvGradParamUpdate()
     config.neuron_counts = [1, 3, 5, 2]
     config.epochs = 50
 
@@ -115,7 +105,7 @@ def odd_even_data_classical():
     dataset.validate = get_data(1000)
 
     config = network_config.NetworkConfig()
-    #config.param_update_c = param_update_fns.GdFixedParamUpdate()
+    #config.param_update_c = param_update_fns.InvGradParamUpdate()
     config.neuron_counts = [1, 30, 15, 5, 2]
     config.epochs = 50
 
