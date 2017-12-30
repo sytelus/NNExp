@@ -79,6 +79,7 @@
     <Folder Include="mnist_keras\" />
     <Folder Include="mnist_keras\results\" />
     <Folder Include="mnist_keras\results\mlp\" />
+    <Folder Include="mnist_keras\results\sq_grad\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="mnist_keras\notes.txt" />
@@ -89,6 +90,12 @@
     <Content Include="mnist_keras\results\Nielson-py.txt" />
     <Content Include="mnist_keras\results\nielson-tf.txt" />
     <Content Include="mnist_keras\results\official.txt" />
+    <Content Include="mnist_keras\results\sq_grad\3layer_18lr.txt" />
+    <Content Include="mnist_keras\results\sq_grad\3layer_24lr.txt" />
+    <Content Include="mnist_keras\results\sq_grad\3layer_3lr.txt" />
+    <Content Include="mnist_keras\results\nielson_3layer_300rows.txt" />
+    <Content Include="mnist_keras\results\sq_grad\3layer_9lr.txt" />
+    <Content Include="mnist_keras\results\sq_grad\3layer_13lr.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

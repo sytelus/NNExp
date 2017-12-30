@@ -12,20 +12,20 @@ class Network:
         return input_vals
 
 
-    def sgd(self, labeled_data : labeled_data.LabeledData):
+    def sgd(self, train_data, validate_date):
         self.biases = self.config.init_c.get_biases(self.config.neuron_counts)
         self.weights = self.config.init_c.get_weights(self.config.neuron_counts);
 
-        n = len(labeled_data.train)
+        n = len(train_data)
 
         for j in range(self.config.epochs):
-            np.random.shuffle(labeled_data.train)
+            np.random.shuffle(train_data)
             mini_batches = [
-                labeled_data.train[k : k + self.config.batch_size]
+                train_data[k : k + self.config.batch_size]
                 for k in range(0, n, self.config.batch_size)]
             for batch in mini_batches:
-                self.sgd_batch(batch, len(labeled_data.train))
-            print("Epoch %d : %d / %d" % (j, self.evaluate(labeled_data.validate), len(labeled_data.validate)))
+                self.sgd_batch(batch, len(train_data))
+            print("Epoch %d : %d / %d" % (j, self.evaluate(validate_date), len(validate_date)))
         print('done')
 
 
