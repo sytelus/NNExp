@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>1644d48e-b4b2-4e12-baf3-cf85a6daf9a6</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>main.py</StartupFile>
+    <StartupFile>Rosenbrock.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -71,6 +71,7 @@
     <Compile Include="param_update_fns.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Rosenbrock.py" />
   </ItemGroup>
   <ItemGroup>
     <InterpreterReference Include="Global|PythonCore|3.5" />
@@ -94,6 +95,7 @@
     <Content Include="mnist_keras\results\sq_grad\3layer_24lr.txt" />
     <Content Include="mnist_keras\results\sq_grad\3layer_3lr.txt" />
     <Content Include="mnist_keras\results\nielson_3layer_300rows.txt" />
+    <Content Include="mnist_keras\results\sq_grad\3layer_90percennt_data.txt" />
     <Content Include="mnist_keras\results\sq_grad\3layer_9lr.txt" />
     <Content Include="mnist_keras\results\sq_grad\3layer_13lr.txt" />
   </ItemGroup>
