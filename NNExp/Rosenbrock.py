@@ -92,7 +92,7 @@ def steepest_descent(objfun, gradient, init, tolerance=1e-6, maxiter=10000, step
 
 def inv_descent(objfun, gradient, init, tolerance=1e-6, maxiter=3000, steplength=0.01):
     def clip_val(p):
-        return np.fabs(p) *0.1
+        return np.fabs(p)
     p = init
     iterno=0
     parray = [p]
@@ -102,10 +102,13 @@ def inv_descent(objfun, gradient, init, tolerance=1e-6, maxiter=3000, steplength
         g = gradient(p[0],p[1])
         g[g == 0] = np.inf
         c = clip_val(p)
-        delta = -fprev / g
+        delta = -0.01 * fprev / g
         delta_clipped = np.clip(delta, -c, c)
-        p = p + delta_clipped
-        fcur = objfun(p[0], p[1])
+        p_new = p + delta_clipped
+        fcur = objfun(p_new[0], p_new[1])
+        if fcur - fprev > 0.5:
+            print('no')
+        p = p_new
         if np.isnan(fcur):
             break
         parray.append(p)
