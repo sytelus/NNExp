@@ -2,6 +2,7 @@ import mnist_dataset as mnist
 import labeled_data as ld
 import numpy as np
 import network as nn
+import twin_network as tnn
 import network_config
 import init_fns
 import loss_fns
@@ -23,6 +24,14 @@ def nielson_3layer_300rows():
     config.neuron_counts = [784, 30, 10]
 
     net = nn.Network(config)
+    net.train(labeled_data.train, labeled_data.validate)
+
+def twin_3layer_300rows():
+    labeled_data = mnist.MnistDataset.from_pickled_file(30)
+    config = network_config.NetworkConfig()
+    config.neuron_counts = [784, 30, 10]
+
+    net = tnn.TwinNetwork(config)
     net.train(labeled_data.train, labeled_data.validate)
 
 def sq_grad_3layer_300rows():

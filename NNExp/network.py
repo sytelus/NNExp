@@ -11,10 +11,12 @@ class Network:
             input_vals = self.config.activation_c.fn(np.dot(w, input_vals) + b)
         return input_vals
 
-    def train(self, train_data, validate_date):
-        # intialize weights and biases
+    def _init_nn_params(self):
         self.biases = self.config.init_c.get_biases(self.config.neuron_counts)
         self.weights = self.config.init_c.get_weights(self.config.neuron_counts);
+
+    def train(self, train_data, validate_date):
+        self._init_nn_params()
 
         n = len(train_data)
 
@@ -26,7 +28,11 @@ class Network:
                 train_data[k : k + self.config.batch_size]
                 for k in range(0, n, self.config.batch_size)]
             for batch in mini_batches:
-                self._train_batch(batch, len(train_data))
+                total_loss, db_sum, dw_sum = self._train_batch(batch, n)
+
+                # make update to weights and biases for entire batch
+                self._update_nn_params(self.config, self.biases, self.weights, 
+                    total_loss, db_sum, dw_sum, len(batch), n)
 
             # output results
             print("Epoch %d : %d / %d" % (j, self.test(validate_date), len(validate_date)))
@@ -34,11 +40,17 @@ class Network:
         # end of training
         print('done')
 
+    def _update_nn_params(self, config, biases, weights, total_loss,
+        b_batch, w_batch, batch_len, train_len):
+        self.biases, self.weights = self.config.param_update_c.fn(
+            self.config, self.biases, self.weights, 
+            total_loss, b_batch, w_batch, batch_len, train_len)
+
 
     def _train_batch(self, batch, n):
         # init sums with zeros
-        dw_sum = [np.zeros(b.shape) for b in self.biases]
-        db_sum = [np.zeros(w.shape) for w in self.weights]
+        dw_sum = [np.zeros(w.shape) for w in self.weights]
+        db_sum = [np.zeros(b.shape) for b in self.biases]
 
         total_loss = 0
         # for data point in batch
@@ -49,13 +61,10 @@ class Network:
 
             # accumulate result of the backprop on each batch
             total_loss += loss
-            dw_sum = [bb + bbp for bb, bbp in zip(dw_sum, db_batch)]
-            db_sum = [wb + wbp for wb, wbp in zip(db_sum, dw_batch)]
+            dw_sum = [wb + wbp for wb, wbp in zip(dw_sum, dw_batch)]
+            db_sum = [bb + bbp for bb, bbp in zip(db_sum, db_batch)]
 
-        # make update to weights and biases for entire batch
-        self.biases, self.weights = self.config.param_update_c.fn(self.config, self.biases, self.weights, 
-            total_loss, dw_sum, db_sum, len(batch), n)
-
+        return (total_loss, db_sum, dw_sum)
 
     def test(self, test_data):
         test_results = [(np.argmax(self._feed_forward(x)), np.argmax(y_true))

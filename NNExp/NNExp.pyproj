@@ -12,7 +12,7 @@
     <OutputPath>.</OutputPath>
     <Name>NNExp</Name>
     <RootNamespace>NNExp</RootNamespace>
-    <InterpreterId>Global|PythonCore|3.5</InterpreterId>
+    <InterpreterId>Global|ContinuumAnalytics|Anaconda35-64</InterpreterId>
     <IsWindowsApplication>False</IsWindowsApplication>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
@@ -72,9 +72,12 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Rosenbrock.py" />
+    <Compile Include="twin_network.py">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <InterpreterReference Include="Global|PythonCore|3.5" />
+    <InterpreterReference Include="Global|ContinuumAnalytics|Anaconda35-64" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="mnist_keras\" />
