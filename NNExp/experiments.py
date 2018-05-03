@@ -15,7 +15,7 @@ def nielson_3layer_full_data():
     config.neuron_counts = [784, 30, 10]
 
     net = nn.Network(config)
-    net.sgd(labeled_data.train, labeled_data.validate)
+    net.train(labeled_data.train, labeled_data.validate)
 
 def nielson_3layer_300rows():
     labeled_data = mnist.MnistDataset.from_pickled_file(30)
@@ -23,7 +23,7 @@ def nielson_3layer_300rows():
     config.neuron_counts = [784, 30, 10]
 
     net = nn.Network(config)
-    net.sgd(labeled_data.train, labeled_data.validate)
+    net.train(labeled_data.train, labeled_data.validate)
 
 def sq_grad_3layer_300rows():
     labeled_data = mnist.MnistDataset.from_pickled_file(30, True)
@@ -34,7 +34,7 @@ def sq_grad_3layer_300rows():
     config.epochs = 100
 
     net = nn.Network(config)
-    net.sgd(labeled_data.train, labeled_data.test)
+    net.train(labeled_data.train, labeled_data.test)
 
 def nielson_6layer_full_data():
     labeled_data = mnist.MnistDataset.from_pickled_file(30)
@@ -48,7 +48,7 @@ def nielson_6layer_full_data():
     config.epochs = 500
 
     net = nn.Network(config)
-    net.sgd(labeled_data.train, labeled_data.validate)
+    net.train(labeled_data.train, labeled_data.validate)
 
 def invgrad_6layer():
     labeled_data = mnist.MnistDataset.from_pickled_file(30)
@@ -59,7 +59,7 @@ def invgrad_6layer():
     config.epochs = 500
 
     net = nn.Network(config)
-    net.sgd(labeled_data.train, labeled_data.validate)
+    net.train(labeled_data.train, labeled_data.validate)
 
 def invgrad_3layer():
     labeled_data = mnist.MnistDataset.from_pickled_file()
@@ -68,7 +68,7 @@ def invgrad_3layer():
     config.neuron_counts = [784, 30, 10]
 
     net = nn.Network(config)
-    net.sgd(labeled_data.train, labeled_data.validate)
+    net.train(labeled_data.train, labeled_data.validate)
 
 def neilson_3layer_200rows_100epochs():
     labeled_data = mnist.MnistDataset.from_pickled_file(20)
@@ -77,7 +77,7 @@ def neilson_3layer_200rows_100epochs():
     config.epochs = 100
 
     net = nn.Network(config)
-    net.sgd(labeled_data.train, labeled_data.validate)
+    net.train(labeled_data.train, labeled_data.validate)
 
 def neilson_5layer_200rows_100epochs():
     labeled_data = mnist.MnistDataset.from_pickled_file(20)
@@ -88,7 +88,7 @@ def neilson_5layer_200rows_100epochs():
     config.epochs = 50
 
     net = nn.Network(config)
-    net.sgd(labeled_data.train, labeled_data.validate)
+    net.train(labeled_data.train, labeled_data.validate)
 
 def linear_data_classical():
     def get_data(count):
@@ -108,7 +108,7 @@ def linear_data_classical():
     config.epochs = 50
 
     net = nn.Network(config)
-    net.sgd(dataset)
+    net.train(dataset)
     
     
 def odd_even_data_classical():
@@ -129,4 +129,4 @@ def odd_even_data_classical():
     config.epochs = 50
 
     net = nn.Network(config)
-    net.sgd(dataset)
+    net.train(dataset)

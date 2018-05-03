@@ -53,6 +53,6 @@ history = model.fit(x_train, y_train,
                     epochs=epochs,
                     verbose=2,
                     validation_data=(x_test_official, y_test_official))
-score = model.evaluate(x_test, y_test, verbose=0)
+score = model.test(x_test, y_test, verbose=0)
 print('Test loss:', score[0])
 print('Test accuracy:', score[1])
