@@ -10,8 +10,9 @@ class TwinNetwork:
 
     def train(self, train_data, validate_date):
         # intialize weights and biases
-        for nw in self.networks:
-            nw._init_nn_params()
+        self.networks[0]._init_nn_params()
+        for nw in self.networks[1:]:
+            nw._init_nn_params(self.networks[0])
 
         n = len(train_data)
 

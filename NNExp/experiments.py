@@ -29,6 +29,9 @@ def nielson_3layer_300rows():
 def twin_3layer_300rows():
     labeled_data = mnist.MnistDataset.from_pickled_file(30)
     config = network_config.NetworkConfig()
+    config.batch_size = 3
+    config.epochs = 3000000
+    config.eta = 0.003
     config.neuron_counts = [784, 30, 10]
 
     net = tnn.TwinNetwork(config)

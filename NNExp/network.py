@@ -11,9 +11,13 @@ class Network:
             input_vals = self.config.activation_c.fn(np.dot(w, input_vals) + b)
         return input_vals
 
-    def _init_nn_params(self):
-        self.biases = self.config.init_c.get_biases(self.config.neuron_counts)
-        self.weights = self.config.init_c.get_weights(self.config.neuron_counts);
+    def _init_nn_params(self, other = None):
+        if other is None:
+            self.biases = self.config.init_c.get_biases(self.config.neuron_counts)
+            self.weights = self.config.init_c.get_weights(self.config.neuron_counts)
+        else:
+            self.biases = other.biases
+            self.weights = other.weights
 
     def train(self, train_data, validate_date):
         self._init_nn_params()
