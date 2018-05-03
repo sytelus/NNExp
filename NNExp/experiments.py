@@ -26,6 +26,16 @@ def nielson_3layer_300rows():
     net = nn.Network(config)
     net.train(labeled_data.train, labeled_data.validate)
 
+def delta_boosted_3layer_300rows():
+    labeled_data = mnist.MnistDataset.from_pickled_file(30)
+    config = network_config.NetworkConfig()
+    config.neuron_counts = [784, 30, 10]
+    config.delta_boost = 4
+    # config.eta = 1
+
+    net = nn.Network(config)
+    net.train(labeled_data.train, labeled_data.validate)
+
 def twin_3layer_300rows():
     labeled_data = mnist.MnistDataset.from_pickled_file(30)
     config = network_config.NetworkConfig()
@@ -91,13 +101,38 @@ def neilson_3layer_200rows_100epochs():
     net = nn.Network(config)
     net.train(labeled_data.train, labeled_data.validate)
 
+def delta_boosted_5layer_300rows():
+    labeled_data = mnist.MnistDataset.from_pickled_file(30)
+    config = network_config.NetworkConfig()
+    #config.init_c = init_fns.LeCunNormalInit()
+    # config.activation_c = activation_fns.ReLUActivation()
+    config.neuron_counts = [784, 30, 20, 15, 10]
+
+    config.eta = 0.1
+    config.delta_boost = 4
+
+    net = nn.Network(config)
+    net.train(labeled_data.train, labeled_data.validate)
+
+def delta_unboosted_5layer_300rows():
+    labeled_data = mnist.MnistDataset.from_pickled_file(30)
+    config = network_config.NetworkConfig()
+    #config.init_c = init_fns.LeCunNormalInit()
+    # config.activation_c = activation_fns.ReLUActivation()
+    config.neuron_counts = [784, 30, 20, 15, 10]
+
+    config.eta = 0.1
+    config.delta_boost = 1
+
+    net = nn.Network(config)
+    net.train(labeled_data.train, labeled_data.validate)
+
 def neilson_5layer_200rows_100epochs():
     labeled_data = mnist.MnistDataset.from_pickled_file(20)
     config = network_config.NetworkConfig()
     config.init_c = init_fns.LeCunNormalInit()
     # config.activation_c = activation_fns.ReLUActivation()
     config.neuron_counts = [784, 30, 20, 15, 10]
-    config.epochs = 50
 
     net = nn.Network(config)
     net.train(labeled_data.train, labeled_data.validate)

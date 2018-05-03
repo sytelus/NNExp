@@ -88,6 +88,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="mnist_keras\notes.txt" />
+    <Content Include="mnist_keras\results\delta_boosted_3layer_300rows.txt" />
     <Content Include="mnist_keras\results\mlp\1. multilayer_baseline.txt" />
     <Content Include="mnist_keras\results\mlp\1A. small test data baseline" />
     <Content Include="mnist_keras\results\mlp\2. just relu" />
@@ -102,6 +103,7 @@
     <Content Include="mnist_keras\results\sq_grad\3layer_90percennt_data.txt" />
     <Content Include="mnist_keras\results\sq_grad\3layer_9lr.txt" />
     <Content Include="mnist_keras\results\sq_grad\3layer_13lr.txt" />
+    <Content Include="mnist_keras\results\delta_boosted_5layer_300rows.txt" />
     <Content Include="results\Chap1Results_2000rows.txt" />
     <Content Include="results\Chap1Results_200rows.txt" />
     <Content Include="results\Chap1Results_6000rows.txt" />

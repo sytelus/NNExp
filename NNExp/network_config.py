@@ -12,7 +12,8 @@ class NetworkConfig:
     init_c = init_fns.NormalInit()
     backprop_c = backprop_fns.ClassicBackprop()
     param_update_c = param_update_fns.ClassicParamUpdate()
-    epochs = 30
+    epochs = 150
+    delta_boost = 1
     batch_size = 10
     eta = 3 # learning rate
     lmbda = 0.0 # regularization

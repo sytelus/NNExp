@@ -36,7 +36,6 @@ class Network:
 
                 # make update to weights and biases for entire batch
                 self._update_nn_params(total_loss, db_sum, dw_sum, len(batch), n)
-
             # output results
             print("Epoch %d : %d / %d" % (j, self.test(validate_date), len(validate_date)))
 
