@@ -31,8 +31,8 @@ class TwinNetwork:
                     self.networks[nn_id % nn_len]._train_batch(batch, n)
 
                 # make update to weights and biases for entire batch
-                self.networks[(nn_id + 1) % nn_len]._update_nn_params(self.config, 
-                    self.biases, self.weights, total_loss, db_sum, dw_sum, len(batch), n)
+                nw = self.networks[(nn_id + 1) % nn_len]
+                nw._update_nn_params(total_loss, db_sum, dw_sum, len(batch), n)
 
                 nn_id += 1
 

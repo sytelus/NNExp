@@ -31,8 +31,7 @@ class Network:
                 total_loss, db_sum, dw_sum = self._train_batch(batch, n)
 
                 # make update to weights and biases for entire batch
-                self._update_nn_params(self.config, self.biases, self.weights, 
-                    total_loss, db_sum, dw_sum, len(batch), n)
+                self._update_nn_params(total_loss, db_sum, dw_sum, len(batch), n)
 
             # output results
             print("Epoch %d : %d / %d" % (j, self.test(validate_date), len(validate_date)))
@@ -40,8 +39,7 @@ class Network:
         # end of training
         print('done')
 
-    def _update_nn_params(self, config, biases, weights, total_loss,
-        b_batch, w_batch, batch_len, train_len):
+    def _update_nn_params(self, total_loss, b_batch, w_batch, batch_len, train_len):
         self.biases, self.weights = self.config.param_update_c.fn(
             self.config, self.biases, self.weights, 
             total_loss, b_batch, w_batch, batch_len, train_len)
