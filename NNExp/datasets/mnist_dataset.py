@@ -1,14 +1,16 @@
 import pickle
 import numpy as np
-import labeled_data as ld
 import gzip
 import sys
 import os
 import itertools
 
+import network.labeled_data as ld
+
+
 class MnistDataset:
     @staticmethod
-    def from_pickled_file(class_count = 6000, others_as_test = False, file_path = os.path.join('data', 'mnist.pkl.gz')):
+    def from_pickled_file(class_count = 6000, others_as_test = False, file_path = os.path.join('datasets', 'mnist.pkl.gz')):
         script_path = sys.path[0]
         full_file_path = os.path.join(script_path, file_path)
         others = [] if others_as_test else None

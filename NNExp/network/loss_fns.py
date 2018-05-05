@@ -1,11 +1,13 @@
 import numpy as np
 
+
 class QuadraticLoss:
     def fn(self, y_pred, y_true):
-        return 0.5*np.square(y_pred-y_true)
+        return 0.5 * np.square(y_pred - y_true)
 
     def d_fn(self, y_pred, y_true):
-        return (y_pred-y_true)
+        return (y_pred - y_true)
+
 
 class CrossEntropyLoss:
     def fn(self, y_pred, y_true):
@@ -18,7 +20,7 @@ class CrossEntropyLoss:
 
         """
         with np.errstate(divide='ignore', invalid='ignore'):
-            return np.sum(np.nan_to_num(-y_true*np.log(y_pred)-(1-y_true)*np.log(1-y_pred)))
+            return np.sum(np.nan_to_num(-y_true * np.log(y_pred) - (1 - y_true) * np.log(1 - y_pred)))
 
     def d_fn(self, y_pred, y_true):
         """Return the error delta from the output layer.  Note that the
@@ -28,7 +30,6 @@ class CrossEntropyLoss:
 
         """
         with np.errstate(divide='ignore', invalid='ignore'):
-            denom = y_pred * (y_pred-1)
-            #denom = [d if d != 0 else [1E-30] for d in denom]
-            return np.nan_to_num((y_pred-y_true) / denom)
-
+            denom = y_pred * (y_pred - 1)
+            # denom = [d if d != 0 else [1E-30] for d in denom]
+            return np.nan_to_num((y_pred - y_true) / denom)

@@ -1,9 +1,10 @@
 import numpy as np
-import loss_fns
-import init_fns
-import activation_fns
-import backprop_fns
-import param_update_fns
+
+from . import loss_fns
+from . import init_fns
+from . import activation_fns
+from . import backprop_fns
+from . import param_update_fns
 
 class NetworkConfig:
     neuron_counts = []

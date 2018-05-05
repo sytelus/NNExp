@@ -1,5 +1,6 @@
 import numpy as np
 
+
 class SigmoidActivation:
     def fn(self, x):
         x_clipped = np.clip(x, -300, 300)
@@ -7,21 +8,23 @@ class SigmoidActivation:
 
     def d_fn(self, x):
         f = self.fn(x)
-        return  f * (1 - f)
+        return f * (1 - f)
+
 
 class ReLUActivation:
     def fn(self, x):
-        result = x * (x > 0) # np.maximum(input_sum, 0)
+        result = x * (x > 0)  # np.maximum(input_sum, 0)
         return result
 
     def d_fn(self, x):
-        result = 1. * (x > 0) # np.greater(x, 0).astype(int)
+        result = 1. * (x > 0)  # np.greater(x, 0).astype(int)
         return result
+
 
 class TanhActivation:
     def fn(self, x):
-        return numpy.tanh(x)
+        return np.tanh(x)
 
     def d_fn(self, x):
-        f = self.fn(x) 
+        f = self.fn(x)
         return 1. - f * f

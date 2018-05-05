@@ -1,14 +1,14 @@
-import mnist_dataset as mnist
-import labeled_data as ld
-import numpy as np
-import network as nn
-import twin_network as tnn
-import network_config
-import init_fns
-import loss_fns
-import activation_fns
-import param_update_fns
+
 import math
+
+import datasets.mnist_dataset as mnist
+import network.labeled_data as ld
+import network.network as nn
+import network.network_config as network_config
+import numpy as np
+
+from . import twin_network as tnn
+
 
 def nielson_3layer_full_data():
     labeled_data = mnist.MnistDataset.from_pickled_file()

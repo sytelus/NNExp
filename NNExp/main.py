@@ -1,4 +1,4 @@
-import experiments
+import experiments.experiments as exp
 import numpy as np
 
 # np.seterr(all='raise')
@@ -10,4 +10,4 @@ np.random.seed(42)
 
 #experiments.delta_boosted_3layer_300rows()
 #experiments.neilson_5layer_200rows_100epochs()
-experiments.delta_unboosted_5layer_300rows()
+exp.delta_boosted_5layer_300rows()

@@ -1,10 +1,9 @@
+import network.network as nn
 import numpy as np
-import network_config
-import labeled_data
-import network as nn
+
 
 class TwinNetwork:
-    def __init__(self, config : network_config.NetworkConfig):
+    def __init__(self, config : nn.network_config.NetworkConfig):
         self.config = config
         self.networks = [nn.Network(config), nn.Network(config)]
 

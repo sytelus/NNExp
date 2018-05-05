@@ -1,6 +1,7 @@
 import numpy as np
-import network_config
-import labeled_data
+
+from . import network_config
+
 
 class Network:
     def __init__(self, config : network_config.NetworkConfig):

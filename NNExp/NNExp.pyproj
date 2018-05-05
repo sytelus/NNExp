@@ -24,25 +24,27 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="activation_fns.py">
+    <Compile Include="datasets\__init__.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="backprop_fns.py">
+    <Compile Include="experiments\__init__.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="experiments.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="labeled_data.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="init_fns.py">
+    <Compile Include="network\activation_fns.py" />
+    <Compile Include="network\backprop_fns.py" />
+    <Compile Include="network\init_fns.py" />
+    <Compile Include="network\labeled_data.py" />
+    <Compile Include="network\loss_fns.py" />
+    <Compile Include="network\network.py" />
+    <Compile Include="network\network_config.py" />
+    <Compile Include="network\param_update_fns.py" />
+    <Compile Include="experiments\experiments.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="main.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="mnist_dataset.py">
+    <Compile Include="datasets\mnist_dataset.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="mnist_keras\layer3SGDCust.py" />
@@ -61,49 +63,42 @@
     <Compile Include="mnist_keras\sgd_cust.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="network.py" />
-    <Compile Include="loss_fns.py">
+    <Compile Include="experiments\Rosenbrock.py" />
+    <Compile Include="experiments\twin_network.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="network_config.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="param_update_fns.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Rosenbrock.py" />
-    <Compile Include="twin_network.py">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="network\__init__.py" />
   </ItemGroup>
   <ItemGroup>
     <InterpreterReference Include="Global|ContinuumAnalytics|Anaconda35-64" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="mnist_keras\" />
-    <Folder Include="mnist_keras\results\" />
-    <Folder Include="mnist_keras\results\mlp\" />
-    <Folder Include="mnist_keras\results\sq_grad\" />
+    <Folder Include="experiments\" />
+    <Folder Include="datasets\" />
+    <Folder Include="network\" />
     <Folder Include="results\" />
+    <Folder Include="results\mlp\" />
+    <Folder Include="results\sq_grad\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="mnist_keras\notes.txt" />
-    <Content Include="mnist_keras\results\delta_boosted_3layer_300rows.txt" />
-    <Content Include="mnist_keras\results\mlp\1. multilayer_baseline.txt" />
-    <Content Include="mnist_keras\results\mlp\1A. small test data baseline" />
-    <Content Include="mnist_keras\results\mlp\2. just relu" />
-    <Content Include="mnist_keras\results\mlp\3. relu lr 0p03.txt" />
-    <Content Include="mnist_keras\results\Nielson-py.txt" />
-    <Content Include="mnist_keras\results\nielson-tf.txt" />
-    <Content Include="mnist_keras\results\official.txt" />
-    <Content Include="mnist_keras\results\sq_grad\3layer_18lr.txt" />
-    <Content Include="mnist_keras\results\sq_grad\3layer_24lr.txt" />
-    <Content Include="mnist_keras\results\sq_grad\3layer_3lr.txt" />
-    <Content Include="mnist_keras\results\nielson_3layer_300rows.txt" />
-    <Content Include="mnist_keras\results\sq_grad\3layer_90percennt_data.txt" />
-    <Content Include="mnist_keras\results\sq_grad\3layer_9lr.txt" />
-    <Content Include="mnist_keras\results\sq_grad\3layer_13lr.txt" />
-    <Content Include="mnist_keras\results\delta_boosted_5layer_300rows.txt" />
+    <Content Include="notes.txt" />
+    <Content Include="results\delta_boosted_3layer_300rows.txt" />
+    <Content Include="results\mlp\1. multilayer_baseline.txt" />
+    <Content Include="results\mlp\1A. small test data baseline" />
+    <Content Include="results\mlp\2. just relu" />
+    <Content Include="results\mlp\3. relu lr 0p03.txt" />
+    <Content Include="results\Nielson-py.txt" />
+    <Content Include="results\nielson-tf.txt" />
+    <Content Include="results\official.txt" />
+    <Content Include="results\sq_grad\3layer_18lr.txt" />
+    <Content Include="results\sq_grad\3layer_24lr.txt" />
+    <Content Include="results\sq_grad\3layer_3lr.txt" />
+    <Content Include="results\nielson_3layer_300rows.txt" />
+    <Content Include="results\sq_grad\3layer_90percennt_data.txt" />
+    <Content Include="results\sq_grad\3layer_9lr.txt" />
+    <Content Include="results\sq_grad\3layer_13lr.txt" />
+    <Content Include="results\delta_boosted_5layer_300rows.txt" />
     <Content Include="results\Chap1Results_2000rows.txt" />
     <Content Include="results\Chap1Results_200rows.txt" />
     <Content Include="results\Chap1Results_6000rows.txt" />
