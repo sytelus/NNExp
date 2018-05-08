@@ -13,23 +13,22 @@ class BConv2d(nn.Conv2d):
         super().__init__(
             in_channels, out_channels, kernel_size, stride, 
             padding, dilation, groups, bias)
-        self.k = torch.tensor([0.0], requires_grad=True).cuda()
+        self.k = torch.tensor([0.6], requires_grad=True).cuda()
         
     def forward(self, input):
         ori = super().forward(input)
-        kn = torch.exp(- self.k) + 1
-        ret = torch.mul(ori, kn)
+        ret = torch.mul(ori, torch.pow(self.k, 2) + 1)
         return ret
 
 class BLinear(nn.Linear):
     def __init__(self, in_features, out_features, bias=True):
         super().__init__(in_features, out_features, bias)
-        self.k = torch.tensor([0.0], requires_grad=True).cuda()
+        self.k = torch.tensor([0.6], requires_grad=True).cuda()
 
 
     def forward(self, input):
         ori = super().forward(input)
-        ret = torch.mul(ori, torch.exp(- self.k) + 1)
+        ret = torch.mul(ori, torch.pow(self.k, 2) + 1)
         return ret
 
 
