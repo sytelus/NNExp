@@ -1,0 +1,84 @@
+k=1
+
+Test set: Average loss: 0.2078, Accuracy: 9351/10000 (93.51%)
+Test set: Average loss: 0.1314, Accuracy: 9597/10000 (95.97%)
+Test set: Average loss: 0.0993, Accuracy: 9694/10000 (96.94%)
+Test set: Average loss: 0.0829, Accuracy: 9729/10000 (97.29%)
+Test set: Average loss: 0.0732, Accuracy: 9761/10000 (97.61%)
+Test set: Average loss: 0.0650, Accuracy: 9790/10000 (97.90%)
+Test set: Average loss: 0.0613, Accuracy: 9810/10000 (98.10%)
+Test set: Average loss: 0.0571, Accuracy: 9822/10000 (98.22%)
+Test set: Average loss: 0.0552, Accuracy: 9836/10000 (98.36%)
+Test set: Average loss: 0.0536, Accuracy: 9833/10000 (98.33%)
+Press any key to continue . . .
+
+
+k=1.25
+
+Test set: Average loss: 0.1261, Accuracy: 9585/10000 (95.85%)
+Test set: Average loss: 0.0856, Accuracy: 9722/10000 (97.22%)
+Test set: Average loss: 0.0678, Accuracy: 9806/10000 (98.06%)
+Test set: Average loss: 0.0618, Accuracy: 9816/10000 (98.16%)
+Test set: Average loss: 0.0553, Accuracy: 9833/10000 (98.33%)
+Test set: Average loss: 0.0516, Accuracy: 9843/10000 (98.43%)
+Test set: Average loss: 0.0514, Accuracy: 9843/10000 (98.43%)
+Test set: Average loss: 0.0466, Accuracy: 9857/10000 (98.57%)
+Test set: Average loss: 0.0455, Accuracy: 9870/10000 (98.70%)
+Test set: Average loss: 0.0438, Accuracy: 9873/10000 (98.73%)
+Press any key to continue . . .
+
+k=1.35
+Test set: Average loss: 0.1314, Accuracy: 9588/10000 (95.88%)
+Test set: Average loss: 0.1006, Accuracy: 9696/10000 (96.96%)
+Test set: Average loss: 0.0790, Accuracy: 9751/10000 (97.51%)
+Test set: Average loss: 0.0718, Accuracy: 9772/10000 (97.72%)
+Test set: Average loss: 0.0621, Accuracy: 9812/10000 (98.12%)
+Test set: Average loss: 0.0570, Accuracy: 9824/10000 (98.24%)
+Test set: Average loss: 0.0541, Accuracy: 9823/10000 (98.23%)
+Test set: Average loss: 0.0541, Accuracy: 9824/10000 (98.24%)
+Test set: Average loss: 0.0518, Accuracy: 9830/10000 (98.30%)
+Test set: Average loss: 0.0523, Accuracy: 9829/10000 (98.29%)
+Press any key to continue . . .
+
+
+
+k=1.5
+
+Test set: Average loss: 0.1852, Accuracy: 9443/10000 (94.43%)
+Test set: Average loss: 0.1197, Accuracy: 9627/10000 (96.27%)
+Test set: Average loss: 0.0928, Accuracy: 9719/10000 (97.19%)
+Test set: Average loss: 0.0901, Accuracy: 9724/10000 (97.24%)
+Test set: Average loss: 0.0789, Accuracy: 9760/10000 (97.60%)
+Test set: Average loss: 0.0728, Accuracy: 9775/10000 (97.75%)
+Test set: Average loss: 0.0833, Accuracy: 9734/10000 (97.34%)
+Test set: Average loss: 0.0615, Accuracy: 9796/10000 (97.96%)
+Test set: Average loss: 0.0757, Accuracy: 9785/10000 (97.85%)
+Test set: Average loss: 0.0624, Accuracy: 9804/10000 (98.04%)
+Press any key to continue . . .
+
+k=1.14
+
+Test set: Average loss: 0.1392, Accuracy: 9540/10000 (95.40%)
+Test set: Average loss: 0.0980, Accuracy: 9688/10000 (96.88%)
+Test set: Average loss: 0.0745, Accuracy: 9768/10000 (97.68%)
+Test set: Average loss: 0.0664, Accuracy: 9796/10000 (97.96%)
+Test set: Average loss: 0.0604, Accuracy: 9809/10000 (98.09%)
+Test set: Average loss: 0.0561, Accuracy: 9832/10000 (98.32%)
+Test set: Average loss: 0.0513, Accuracy: 9849/10000 (98.49%)
+Test set: Average loss: 0.0509, Accuracy: 9855/10000 (98.55%)
+Test set: Average loss: 0.0461, Accuracy: 9868/10000 (98.68%)
+Test set: Average loss: 0.0480, Accuracy: 9864/10000 (98.64%)
+Press any key to continue . . .
+
+k=1.35 - all same
+Test set: Average loss: 0.1347, Accuracy: 9561/10000 (95.61%)
+Test set: Average loss: 0.0965, Accuracy: 9694/10000 (96.94%)
+Test set: Average loss: 0.0777, Accuracy: 9765/10000 (97.65%)
+Test set: Average loss: 0.0721, Accuracy: 9778/10000 (97.78%)
+Test set: Average loss: 0.0616, Accuracy: 9814/10000 (98.14%)
+Test set: Average loss: 0.0554, Accuracy: 9828/10000 (98.28%)
+Test set: Average loss: 0.0549, Accuracy: 9821/10000 (98.21%)
+Test set: Average loss: 0.0554, Accuracy: 9816/10000 (98.16%)
+Test set: Average loss: 0.0538, Accuracy: 9835/10000 (98.35%)
+Test set: Average loss: 0.0511, Accuracy: 9817/10000 (98.17%)
+Press any key to continue . . .
