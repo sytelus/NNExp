@@ -24,18 +24,22 @@ class TwinNetwork:
                 for k in range(0, n, self.config.batch_size)]
 
             nn_len = len(self.networks)
-
-            nn_id = 0
-            for batch in mini_batches:
-                _train_batch(batch, n)
+            
+            # normal training loop
+            for i, batch in enumerate(mini_batches):
                 total_loss, db_sum, dw_sum = \
-                    self.networks[nn_id % nn_len]._train_batch(batch, n)
-
+                    self.networks[i % nn_len]._train_batch(batch, n)
                 # make update to weights and biases for entire batch
-                nw = self.networks[(nn_id + 1) % nn_len]
-                nw._update_nn_params(total_loss, db_sum, dw_sum, len(batch), n)
+                self.networks[i % nn_len]._update_nn_params(
+                    total_loss, db_sum, dw_sum, len(batch), n)
 
-                nn_id += 1
+            # co-training loop
+            for i, batch in enumerate(mini_batches):
+                total_loss, db_sum, dw_sum = \
+                    self.networks[i % nn_len]._train_batch(batch, n)
+                # make update to weights and biases for entire batch
+                self.networks[i % nn_len]._update_nn_params(
+                    total_loss, db_sum, dw_sum, len(batch), n)
 
             # output results
             print("Epoch %d : %d / %d" % (j, self.test(validate_date), len(validate_date)))
@@ -63,7 +67,7 @@ class TwinNetwork:
             total_loss, db_sum, dw_sum = self.networks[i]._train_batch(sub_batches[i + 1], n)
             self.networks[i]._update_nn_params(total_loss, db_sum, dw_sum, len(sub_batches[i]), n)
 
-    def _train_cobatch(self, batch, n, net_1, net_2):
+    def _cotrain_batch(self, batch, n, net1, net2):
         # init sums with zeros
         dw_sum = [np.zeros(w.shape) for w in self.weights]
         db_sum = [np.zeros(b.shape) for b in self.biases]
@@ -72,18 +76,8 @@ class TwinNetwork:
         # for data point in batch
         for x, y_true, id in batch:
             # do the backprop to find dW and dB
-            db_batch, dw_batch, loss, input_sums, layer_deltas = self.config.backprop_c.fn(
-                self.config, net_1.biases, net_1.weights, x, y_true)
-
-            db_batch = [np.zeros(b.shape) for b in db_batch]
-            dw_batch = [np.zeros(w.shape) for w in dw_batch]
-
-            b_bp[-1] = delta
-            w_bp[-1] = np.dot(delta, layer_inputs[-2].transpose())
-            for l in range(2, layer_count):
-                delta = layer_deltas[l-1]
-                b_bp[-l] = delta
-                w_bp[-l] = np.dot(delta, layer_inputs[-l - 1].transpose())
+            db_batch, dw_batch, loss, *_ = self.config.backprop_c.fn(
+                self.config, self.biases, self.weights, x, y_true)
 
             # accumulate result of the backprop on each batch
             total_loss += loss
