@@ -58,7 +58,7 @@ class Network:
         # for data point in batch
         for x, y_true, id in batch:
             # do the backprop to find dW and dB
-            db_batch, dw_batch, loss = self.config.backprop_c.fn(
+            db_batch, dw_batch, loss, *_ = self.config.backprop_c.fn(
                 self.config, self.biases, self.weights, x, y_true)
 
             # accumulate result of the backprop on each batch

@@ -28,6 +28,7 @@ class ClassicBackprop:
         d_loss = config.loss_c.d_fn(layer_inputs[-1], y_true)
         d_activation = config.activation_c.d_fn(input_sums[-1])
         delta = d_loss * d_activation  # error signal
+        layer_deltas = [delta]
         delta_boost = config.delta_boost
 
         b_bp[-1] = delta
@@ -37,7 +38,8 @@ class ClassicBackprop:
             input_sum = input_sums[-l]
             d_activation = config.activation_c.d_fn(input_sum)
             delta = np.dot(weights[-l + 1].transpose(), delta) * d_activation * delta_boost
+            layer_deltas.append(delta)
             b_bp[-l] = delta
             w_bp[-l] = np.dot(delta, layer_inputs[-l - 1].transpose())
 
-        return (b_bp, w_bp, loss)
+        return (b_bp, w_bp, loss, input_sums, layer_deltas)

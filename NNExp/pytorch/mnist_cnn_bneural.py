@@ -13,7 +13,7 @@ class BConv2d(nn.Conv2d):
         super().__init__(
             in_channels, out_channels, kernel_size, stride, 
             padding, dilation, groups, bias)
-        self.k = torch.tensor([0.6], requires_grad=True).cuda()
+        self.k = self.bias.new_tensor([0.6], requires_grad=True)
         
     def forward(self, input):
         ori = super().forward(input)
@@ -23,7 +23,7 @@ class BConv2d(nn.Conv2d):
 class BLinear(nn.Linear):
     def __init__(self, in_features, out_features, bias=True):
         super().__init__(in_features, out_features, bias)
-        self.k = torch.tensor([0.6], requires_grad=True).cuda()
+        self.k = self.bias.new_tensor([0.6], requires_grad=True)
 
 
     def forward(self, input):
@@ -110,8 +110,7 @@ def main():
     torch.manual_seed(args.seed)
 
     device = torch.device("cuda" if use_cuda else "cpu")
-
-
+    
     kwargs = {'num_workers': 1, 'pin_memory': True} if use_cuda else {}
     train_loader = torch.utils.data.DataLoader(
         datasets.MNIST('../data', train=True, download=True,
