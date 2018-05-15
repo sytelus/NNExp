@@ -27,6 +27,9 @@
     <Compile Include="datasets\__init__.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="experiments\twin_network2.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="experiments\__init__.py">
       <SubType>Code</SubType>
     </Compile>

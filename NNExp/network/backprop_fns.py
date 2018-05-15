@@ -6,6 +6,8 @@ class ClassicBackprop:
         b_bp = [np.zeros(b.shape) for b in biases]
         w_bp = [np.zeros(w.shape) for w in weights]
 
+        layer_count = len(config.neuron_counts)
+
         # feed_forward
         layer_input = x
         layer_inputs = [x]  # list to store all the layer_inputs, layer by layer
@@ -34,7 +36,7 @@ class ClassicBackprop:
         b_bp[-1] = delta
         w_bp[-1] = np.dot(delta, layer_inputs[-2].transpose())
 
-        for l in range(2, len(config.neuron_counts)):
+        for l in range(2, layer_count):
             input_sum = input_sums[-l]
             d_activation = config.activation_c.d_fn(input_sum)
             delta = np.dot(weights[-l + 1].transpose(), delta) * d_activation * delta_boost

@@ -5,6 +5,8 @@ class ClassicParamUpdate:
     def fn(self, config, biases, weights, total_loss,
            b_batch, w_batch, batch_len, train_len):
         regularization = 1 - config.eta * (config.lmbda / train_len)
+
+        # this effectively averages the gradients
         eta_batch = config.eta / batch_len
 
         weights_new = [regularization * w - eta_batch * wb
