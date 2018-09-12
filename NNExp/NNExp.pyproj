@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>1644d48e-b4b2-4e12-baf3-cf85a6daf9a6</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>pytorch\mnist_normalize.py</StartupFile>
+    <StartupFile>pytorch\mnist\partial_data.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -71,19 +71,13 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="network\__init__.py" />
-    <Compile Include="pytorch\mnist_cnn_bneural.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="pytorch\mnist_cnn_boosted.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="pytorch\mnist_cnn_official.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="pytorch\mnist_normalize.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="pytorch\mnist_TwinNet.py">
+    <Compile Include="pytorch\mnist\bneural.py" />
+    <Compile Include="pytorch\mnist\boosted.py" />
+    <Compile Include="pytorch\mnist\data_tools.py" />
+    <Compile Include="pytorch\mnist\official.py" />
+    <Compile Include="pytorch\mnist\partial_data.py" />
+    <Compile Include="pytorch\mnist\TwinNet.py" />
+    <Compile Include="pytorch\mnist\utils.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="results\pytorch\mnist_cnn_bneural.py">
@@ -99,6 +93,7 @@
     <Folder Include="datasets\" />
     <Folder Include="network\" />
     <Folder Include="pytorch\" />
+    <Folder Include="pytorch\mnist\" />
     <Folder Include="results\" />
     <Folder Include="results\mlp\" />
     <Folder Include="results\pytorch\" />
