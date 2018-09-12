@@ -6,6 +6,7 @@ import torch.nn.functional as F
 import torch.optim as optim
 from torchvision import datasets, transforms
 import utils
+import data_tools
 
 class Net(nn.Module):
     def __init__(self):
@@ -25,7 +26,6 @@ class Net(nn.Module):
         x = self.fc2(x)
         return F.log_softmax(x, dim=1)
 
-@utils.MeasureTime
 def train(args, model, device, train_loader, optimizer, epoch):
     model.train()
     loss = torch.tensor(-1, dtype=torch.double)
@@ -53,7 +53,6 @@ def test(args, model, device, test_loader):
     test_loss /= len(test_loader.dataset)
     return (test_loss, correct / len(test_loader))
 
-@utils.MeasureTime
 def getArgs():
     parser = argparse.ArgumentParser(description='PyTorch MNIST Example')
     parser.add_argument('--batch-size', type=int, default=1, metavar='N',
@@ -75,6 +74,32 @@ def getArgs():
 
     return parser.parse_args()
 
+def getFullDataSets():
+    train_ds = datasets.MNIST('../data', train=True, download=True,
+                        transform=transforms.Compose([
+                            transforms.ToTensor(),
+                            transforms.Normalize((0.1307,), (0.3081,))
+                    ]));
+    test_ds = datasets.MNIST('../data', train=False, transform=transforms.Compose([
+                           transforms.ToTensor(),
+                           transforms.Normalize((0.1307,), (0.3081,))
+                       ]));
+    return train_ds, test_ds
+
+def getPartialDataSets():
+    train_ds, test_ds = data_tools.
+
+def getDataLoaders():
+    train_ds, test_ds = getFullDataSets()
+
+    train_loader = torch.utils.data.DataLoader(train_ds,
+        batch_size=args.batch_size, shuffle=True, **kwargs)
+
+    test_loader = torch.utils.data.DataLoader(test_ds,
+        batch_size=args.test_batch_size, shuffle=True, **kwargs)
+
+    return train_loader, test_loader
+
 def main():
     args = getArgs()
     use_cuda = not args.no_cuda and torch.cuda.is_available()
@@ -82,21 +107,7 @@ def main():
     device = torch.device("cuda" if use_cuda else "cpu")
     kwargs = {'num_workers': 1, 'pin_memory': True} if use_cuda else {}
 
-    with utils.MeasureBlockTime():
-        train_loader = torch.utils.data.DataLoader(
-            datasets.MNIST('../data', train=True, download=True,
-                            transform=transforms.Compose([
-                                transforms.ToTensor(),
-                                transforms.Normalize((0.1307,), (0.3081,))
-                        ])),
-            batch_size=args.batch_size, shuffle=True, **kwargs)
-    test_loader = torch.utils.data.DataLoader(
-        datasets.MNIST('../data', train=False, transform=transforms.Compose([
-                           transforms.ToTensor(),
-                           transforms.Normalize((0.1307,), (0.3081,))
-                       ])),
-        batch_size=args.test_batch_size, shuffle=True, **kwargs)
-
+    train_loader, test_loader = getDataLoaders()
 
     model = Net().to(device)
     optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum)
