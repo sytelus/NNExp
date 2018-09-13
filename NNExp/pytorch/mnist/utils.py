@@ -19,20 +19,27 @@ def MeasureTime(f):
     return _wrapper
 
 class MeasureBlockTime:
-    def __init__(self,name="(block)", no_print = False, disable_gc = True):
+    def __init__(self,name="(block)", no_print = False, disable_gc = True, format_str=":.2f"):
         self.name = name
         self.no_print = no_print
         self.disable_gc = disable_gc
+        self.format_str = format_str
     def __enter__(self):
         if self.disable_gc:
             self.gcold = gc.isenabled()
             gc.disable()
         self.start_time = timeit.default_timer()
+        return self
     def __exit__(self,ty,val,tb):
         self.elapsed = timeit.default_timer() - self.start_time
         if self.disable_gc and self.gcold:
             gc.enable()
         if not self.no_print:
-            print('Function "{}": {}s'.format(self.name, self.elapsed))
+            print(('{}: {' + self.format_str + '}s').format(self.name, self.elapsed))
         return False #re-raise any exceptions
+
+def getTime():
+    return timeit.default_timer()
+def getElapsedTime(start_time):
+    return timeit.default_timer() - start_time
 

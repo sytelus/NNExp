@@ -73,6 +73,9 @@
     <Compile Include="network\__init__.py" />
     <Compile Include="pytorch\mnist\bneural.py" />
     <Compile Include="pytorch\mnist\boosted.py" />
+    <Compile Include="pytorch\mnist\cwlayers.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="pytorch\mnist\data_tools.py" />
     <Compile Include="pytorch\mnist\official.py" />
     <Compile Include="pytorch\mnist\partial_data.py" />
