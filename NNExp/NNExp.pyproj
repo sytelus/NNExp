@@ -77,8 +77,14 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="pytorch\mnist\data_tools.py" />
+    <Compile Include="pytorch\mnist\mnist_cwconv.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="pytorch\mnist\official.py" />
     <Compile Include="pytorch\mnist\partial_data.py" />
+    <Compile Include="pytorch\mnist\train_test.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="pytorch\mnist\TwinNet.py" />
     <Compile Include="pytorch\mnist\utils.py">
       <SubType>Code</SubType>

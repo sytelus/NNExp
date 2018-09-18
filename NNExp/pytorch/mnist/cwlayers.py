@@ -9,7 +9,8 @@ class CWLinear(nn.Linear):
     def forward(self, input):
         #if not hasattr(self.weight,'org'):
         #    self.weight.org=self.weight.data.clone()
-        cw_weight=nn.functional.relu(self.weight)
+        #cw_weight=nn.functional.relu(self.weight)
+        cw_weight=torch.mul(self.weight, self.weight)
         return nn.functional.linear(input, cw_weight)
 
 class CWConv2d(nn.Conv2d):
@@ -21,8 +22,8 @@ class CWConv2d(nn.Conv2d):
     def forward(self, input):
         #if not hasattr(self.weight,'org'):
         #    self.weight.org=self.weight.data.clone()
-        cw_weight=nn.functional.relu(self.weight)
-
+        #cw_weight=nn.functional.relu(self.weight)
+        cw_weight=torch.mul(self.weight, self.weight)
         return nn.functional.conv2d(input, cw_weight, None, self.stride,
                                    self.padding, self.dilation, self.groups)
 
