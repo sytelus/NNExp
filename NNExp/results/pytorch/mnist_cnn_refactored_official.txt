@@ -1,0 +1,17 @@
+Train CUDA: True, Test CUDA: True, Batch Size: 64
+Data loading (s): : 0.05s
+Train: 938, Test:10
+Epoch: 1, train_loss: -1.00, test_loss: 0.20, accuracy:0.9402, TrainTime: 44.05, , TestTime: 4.97
+Epoch: 2, train_loss: -1.00, test_loss: 0.13, accuracy:0.9589, TrainTime: 41.00, , TestTime: 4.91
+Epoch: 3, train_loss: -1.00, test_loss: 0.10, accuracy:0.9685, TrainTime: 40.02, , TestTime: 4.98
+Epoch: 4, train_loss: -1.00, test_loss: 0.08, accuracy:0.9737, TrainTime: 40.16, , TestTime: 5.00
+Epoch: 5, train_loss: -1.00, test_loss: 0.08, accuracy:0.9764, TrainTime: 40.56, , TestTime: 5.15
+Epoch: 6, train_loss: -1.00, test_loss: 0.07, accuracy:0.9786, TrainTime: 40.69, , TestTime: 5.01
+Epoch: 7, train_loss: -1.00, test_loss: 0.07, accuracy:0.9790, TrainTime: 40.38, , TestTime: 5.01
+Epoch: 8, train_loss: -1.00, test_loss: 0.06, accuracy:0.9817, TrainTime: 41.02, , TestTime: 4.90
+Epoch: 9, train_loss: -1.00, test_loss: 0.06, accuracy:0.9833, TrainTime: 40.64, , TestTime: 5.05
+Epoch: 10, train_loss: -1.00, test_loss: 0.05, accuracy:0.9841, TrainTime: 40.10, , TestTime: 4.94
+Epoch: 11, train_loss: -1.00, test_loss: 0.05, accuracy:0.9857, TrainTime: 40.27, , TestTime: 5.31
+Epoch: 12, train_loss: -1.00, test_loss: 0.05, accuracy:0.9836, TrainTime: 40.48, , TestTime: 5.22
+Epoch: 13, train_loss: -1.00, test_loss: 0.05, accuracy:0.9847, TrainTime: 40.17, , TestTime: 5.15
+Epoch: 14, train_loss: -1.00, test_loss: 0.04, accuracy:0.9863, TrainTime: 40.64, , TestTime: 5.09

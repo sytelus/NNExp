@@ -54,12 +54,12 @@ class DataTools:
     def getFullDataSets():
         train_ds = datasets.MNIST('../data', train=True, download=True,
                             transform=transforms.Compose([
-                                transforms.ToTensor() #,
-                                #transforms.Normalize((0.1307,), (0.3081,))
+                                transforms.ToTensor(),
+                                transforms.Normalize((0.1307,), (0.3081,))
                         ]));
         test_ds = datasets.MNIST('../data', train=False, transform=transforms.Compose([
-                               transforms.ToTensor() #,
-                               #transforms.Normalize((0.1307,), (0.3081,))
+                               transforms.ToTensor(),
+                               transforms.Normalize((0.1307,), (0.3081,))
                            ]));
         return train_ds, test_ds
 
