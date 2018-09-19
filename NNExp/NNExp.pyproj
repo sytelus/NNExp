@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>1644d48e-b4b2-4e12-baf3-cf85a6daf9a6</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>pytorch\mnist\official.py</StartupFile>
+    <StartupFile>pytorch\mnist\pipeline.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -85,7 +85,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="pytorch\mnist\official.py" />
-    <Compile Include="pytorch\mnist\partial_data.py" />
+    <Compile Include="pytorch\mnist\pipeline.py" />
     <Compile Include="pytorch\mnist\train_test.py">
       <SubType>Code</SubType>
     </Compile>
@@ -125,6 +125,7 @@
     <Content Include="results\pytorch\mnist_cnn_official.txt" />
     <Content Include="results\pytorch\mnist_cnn_boosted.txt" />
     <Content Include="results\pytorch\mnist_cnn_refactored_official.txt" />
+    <Content Include="results\pytorch\mnist_cnn_official_4.1.txt" />
     <Content Include="results\sq_grad\3layer_18lr.txt" />
     <Content Include="results\sq_grad\3layer_24lr.txt" />
     <Content Include="results\sq_grad\3layer_3lr.txt" />

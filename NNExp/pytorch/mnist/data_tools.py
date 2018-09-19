@@ -76,13 +76,16 @@ class DataTools:
         return train_ds_part, test_ds_part
 
     @staticmethod
-    def getDataLoaders(batch_size, test_batch_size, k=None, kwargs_train={}, kwargs_test={}):
-        train_ds, test_ds = DataTools.getDataSets(k)
+    def getDataLoaders(args):
+        train_ds, test_ds = DataTools.getDataSets(args.data_per_class)
+
+        kwargs_train = {'pin_memory': True} if args.use_cuda_train else {}
+        kwargs_test = {'pin_memory': True} if args.use_cuda_test else {}
 
         train_loader = torch.utils.data.DataLoader(train_ds,
-            batch_size=batch_size, shuffle=True, **kwargs_train)
+            batch_size=args.batch_size, shuffle=True, **kwargs_train)
 
         test_loader = torch.utils.data.DataLoader(test_ds,
-            batch_size=test_batch_size, shuffle=True, **kwargs_test)
+            batch_size=args.test_batch_size, shuffle=True, **kwargs_test)
 
         return train_loader, test_loader
