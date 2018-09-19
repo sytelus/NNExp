@@ -5,15 +5,20 @@ import utils
 
 class TrainTest:
     def __init__(self, model, lr, momentum, train_device, test_device):
-        self.model = model
-        self.lr = lr
-        self.momentum = momentum
-        self.optimizer = optim.SGD(model.parameters(), lr, momentum)
         self.train_device = train_device
         self.test_device = test_device
+        self.lr = lr
+        self.momentum = momentum
+
+        self.model = model
+        if self.train_device == self.test_device:
+            self.model.to(self.train_device)
+        self.optimizer = optim.SGD(model.parameters(), lr, momentum)
+
 
     def train_epoch(self, train_loader, track_train_accuracy = True):
-        self.model.to(self.train_device)
+        if self.train_device != self.test_device:
+            self.model.to(self.train_device)
         train_loss_sum = 0
         correct = 0
         self.model.train()
@@ -25,20 +30,24 @@ class TrainTest:
             loss = F.nll_loss(output, label)
             loss.backward()
             self.optimizer.step()
-            train_loss_sum += loss.item()
 
             if track_train_accuracy:
-                self.model.eval()
+                self.model.eval() # disable layers like dropout
                 with torch.no_grad():
                     output = self.model(input)
+                    train_loss_sum += F.nll_loss(output, label, reduction = 'sum').item() # sum up batch loss
                     pred = output.max(1, keepdim=True)[1] # get the index of the max log-probability
                     correct += pred.eq(label.view_as(pred)).sum().item()
                 self.model.train()
-        self.train_loss = train_loss_sum / len(train_loader)
+            else:
+                train_loss_sum += loss.item() * len(input) #this won't be accurate because of layers like dropout
+
+        self.train_loss = train_loss_sum / len(train_loader.dataset)
         self.train_accuracy = correct / len(train_loader.dataset)
 
     def test_epoch(self, test_loader):
-        self.model.to(self.test_device)
+        if self.train_device != self.test_device:
+            self.model.to(self.test_device)
         self.model.eval()
         test_loss_sum = 0
         correct = 0
