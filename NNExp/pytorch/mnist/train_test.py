@@ -4,16 +4,23 @@ import torch.nn.functional as F
 import utils
 
 class TrainTest:
+    class Callbacks:
+        after_epoch = lambda epoch, train_time, test_time: None
+        after_train_batch = lambda model, input, label, output, pred, loss, correct:None
+        after_first_train_batch = lambda input, label, output, pred, loss, correct:None
+
     def __init__(self, model, lr, momentum, train_device, test_device):
         self.train_device = train_device
         self.test_device = test_device
         self.lr = lr
         self.momentum = momentum
+        self.callbacks = TrainTest.Callbacks()
 
         self.model = model
         if self.train_device == self.test_device:
             self.model.to(self.train_device)
         self.optimizer = optim.SGD(model.parameters(), lr, momentum)
+        self.is_first_batch = False
 
 
     def train_epoch(self, train_loader, track_train_accuracy = True):
@@ -42,6 +49,11 @@ class TrainTest:
             else:
                 train_loss_sum += loss.item() * len(input) #this won't be accurate because of layers like dropout
 
+            self.callbacks.after_train_batch(input, label, output, pred, loss, correct)
+            if not self.is_first_batch:
+                self.callbacks.after_first_train_batch(input, label, output, pred, loss, correct)
+                self.is_first_batch = True
+
         self.train_loss = train_loss_sum / len(train_loader.dataset)
         self.train_accuracy = correct / len(train_loader.dataset)
 
@@ -61,10 +73,10 @@ class TrainTest:
         self.test_loss = test_loss_sum / len(test_loader.dataset)
         self.test_accuracy = correct / len(test_loader.dataset)
 
-    def train_model(self, epochs, train_loader, test_loader, epoch_callback):
+    def train_model(self, epochs, train_loader, test_loader):
         for epoch in range(0, epochs):
             with utils.MeasureBlockTime(no_print=True) as train_time:
                 self.train_epoch(train_loader)
             with utils.MeasureBlockTime(no_print=True) as test_time:
                 self.test_epoch(test_loader)
-            epoch_callback(self, epoch, train_time.elapsed, test_time.elapsed)
+            self.callbacks.after_epoch(epoch, train_time.elapsed, test_time.elapsed)

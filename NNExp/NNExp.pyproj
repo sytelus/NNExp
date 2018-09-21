@@ -80,6 +80,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="pytorch\mnist\data_tools.py" />
+    <Compile Include="pytorch\mnist\debug_probe.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="pytorch\mnist\mnist_conv.py" />
     <Compile Include="pytorch\mnist\mnist_cwconv.py">
       <SubType>Code</SubType>

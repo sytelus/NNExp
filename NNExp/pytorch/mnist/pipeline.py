@@ -5,8 +5,8 @@ from mnist_conv import MnistConv as Net
 from torchvision import datasets, transforms
 import utils
 from data_tools import DataTools
-from tensorboardX import SummaryWriter
 from train_test import TrainTest
+from debug_probe import DebugProbe
 
 def getArgs():
     parser = argparse.ArgumentParser(description='PyTorch MNIST Example')
@@ -38,18 +38,6 @@ def getArgs():
     args.data_per_class = None
     return args
 
-def summerize_epoch(writer):
-    def _wrapper(train_test, epoch, train_time, test_time):
-        writer.add_scalar('losses/train', train_test.train_loss, epoch)
-        writer.add_scalar('losses/test', train_test.test_loss, epoch)
-        writer.add_scalar('accuracy/train', train_test.train_accuracy, epoch)
-        writer.add_scalar('accuracy/test', train_test.test_accuracy, epoch)
-
-        print("Epoch: {}, train_loss: {:.2f}, train_accuracy: {:.4f}, test_loss: {:.2f}, test_accuracy:{:.4f}, TrainTime: {:.2f}, , TestTime: {:.2f}".format(
-            epoch, train_test.train_loss, train_test.train_accuracy, train_test.test_loss, 
-            train_test.test_accuracy, train_time, test_time))
-    return _wrapper
-
 def main():
     #prepare args
     args = getArgs()
@@ -57,7 +45,6 @@ def main():
 
     #init stuff
     torch.manual_seed(args.seed)
-    writer = SummaryWriter('d:/tlogs/mnist_official1')
     model = Net()
 
     #load data
@@ -66,9 +53,10 @@ def main():
     print("Train: {}, Test:{}, Train batches: {}, Test batches:{}".format(
         len(train_loader.dataset), len(test_loader.dataset), len(train_loader), len(test_loader)))
     train_test = TrainTest(model, args.lr, args.momentum, args.device_train, args.device_test)    
+    probe = DebugProbe(train_test, "test_exp")
 
     #train model
-    train_test.train_model(args.epochs, train_loader, test_loader, summerize_epoch(writer))
+    train_test.train_model(args.epochs, train_loader, test_loader)
 
 
 if __name__ == '__main__':
